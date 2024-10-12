@@ -1,0 +1,26 @@
+
+---
+
+- hosts: ubuntu.my
+  become: yes
+  tasks:
+  -  name: Install dovecot on Ubuntu
+     apt:
+       pkg:
+       - dovecot-core
+       - dovecot-imapd
+       - dovecot-pop3d
+       - dovecot-lmtpd
+       - name=postfix
+     state=latest
+     when:
+        ansible_os_family == "Debian"
+     notify:
+        dovecot systemd
+  handlers:
+  - name: dovecot systemd
+    systemd:
+     name: dovecot.service
+     enabled: yes
+     state: started
+

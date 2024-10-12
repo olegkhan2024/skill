@@ -1,0 +1,14 @@
+---
+
+- hosts: ubuntu
+  become: yes
+  tasks:
+  - name: install php
+    apt: name={{ item }} update_cache=yes state=latest
+    with_items:
+       - php8.1
+       - php8.1-fpm
+       - php8.1-mysql
+       - php8.1-mbstring
+       - php8.1-xml
+       - php8.1-curl

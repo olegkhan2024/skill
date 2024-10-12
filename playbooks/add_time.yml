@@ -1,0 +1,8 @@
+---
+- hosts: ubuntu.my
+  become: yes
+  tasks:
+    - name: set timezone to Europe/Moscow
+      timezone:
+        name: Europe/Moscow
+

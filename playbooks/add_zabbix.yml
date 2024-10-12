@@ -1,0 +1,17 @@
+---
+- hosts: ubuntu.my
+  become: true
+  tasks:
+  - name: Install zabbix-agent on Ubuntu
+    apt:
+        name=zabbix-agent
+        state=present
+
+#  - name: Install zabbix release package
+#    apt:
+#      deb: https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_7.0-2+ubuntu24.04_all.deb
+#
+#    when:
+#       ansible_os_family == "Debian"
+    notify:
+        zabbix-agent systemd

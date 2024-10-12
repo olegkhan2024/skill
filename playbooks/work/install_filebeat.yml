@@ -1,0 +1,19 @@
+---
+
+- hosts: ubuntu.my
+  become: yes
+  tasks:
+  - name: Update Repo cache and install Filebeat
+    apt:
+        name=filebeat
+        state=latest
+    when:
+        ansible_os_family == "Debian"
+    notify:
+        filebeat systemd
+  handlers:
+  - name: filebeat systemd
+    systemd:
+     name: filebeat
+     enabled: yes
+     state: started

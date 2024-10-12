@@ -1,0 +1,9 @@
+---
+
+- hosts: centos.my
+  become: true
+  tasks:
+  -  name: Install postgres
+     yum:
+        name=postgresql12-server
+        state=present
